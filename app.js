@@ -36,17 +36,5 @@ function validate_fields() {
 }
 
 
-function validate_phone_number(){
-
-    var phone = document.search.customer_phone.value;
-
-    
-   
-    if (phone == "") { alert("Please enter the phone number") ; return false;}
-    
-    else {return false;}
-}
- 
-
 
 

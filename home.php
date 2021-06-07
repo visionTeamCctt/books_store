@@ -10,15 +10,35 @@
 <body>
     <div class="header row">
        
-        <ul class="nav-list row col-8">
+        <ul class="nav-list row col-9">
             <li class="col-2">
                 <a href="home.php">الرئيسية</a>
             </li>
             <li class="col-2">
+                <a href="cart.php">السلة</a>
+            </li>
+            <li class="col-2">
                 <a href="search_user_order.php">الطلبات</a>
             </li>
+            
         </ul>
-        <img src="images/logo.png" alt="logo" class="col-4" style="height: 50; width: 50;">
+        <ul class="nav-list row col-3">
+        <li class="col-7">
+            <?php
+            session_start();
+
+            if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
+            {
+                echo '<a href="login_form.php">تسجيل دخول</a>';
+            }
+            else{
+               echo '<a href="logout.php">تسجيل خروج</a>';
+            }
+                ?>
+            </li>
+            <img src="images/logo.png" alt="logo" class="col-5" style="height: 63px; width: 63px; padding: 12px">
+        </ul>
+        
     </div>
 
     <div>

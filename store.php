@@ -8,18 +8,38 @@
 </head>
 
 <body>
-    <div class="header row">
-        <ul class="nav-list row col-8">
-            <li class="col-2">
-                <a href="home.php">الرئيسية</a>
-            </li>
-            
-            <li class="col-2">
-                <a href="search_user_order.php">الطلبات</a>
-            </li>
-        </ul>
-        <img src="images/logo.png" alt="logo" class="col-4" style="height: 50; width: 50;">
-    </div>
+<div class="header row">
+       
+       <ul class="nav-list row col-9">
+           <li class="col-2">
+               <a href="home.php">الرئيسية</a>
+           </li>
+           <li class="col-2">
+               <a href="cart.php">السلة</a>
+           </li>
+           <li class="col-2">
+               <a href="search_user_order.php">الطلبات</a>
+           </li>
+           
+       </ul>
+       <ul class="nav-list row col-3">
+       <li class="col-8">
+           <?php
+           session_start();
+
+           if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
+           {
+               echo '<a href="login_form.php">تسجيل دخول</a>';
+           }
+           else{
+              echo '<a href="logout.php">تسجيل خروج</a>';
+           }
+               ?>
+           </li>
+           <img src="images/logo.png" alt="logo" class="col-3" style="height: 63px; width: 63px; padding: 10px">
+       </ul>
+       
+   </div>
     <section class="body_sec">
         <br>
         
@@ -62,7 +82,7 @@
                 echo             $row['price'].' د.ل';
                 echo         '</h3>';
                 echo         '<div>';
-                echo             '<button type="button" class="button" id="add_to_order" onclick=location.href="user_order_form.php?book_id='.$row["book_id"].'";> ';
+                echo             '<button type="button" class="button" id="add_to_order" onclick=location.href="cart_insert.php?book_id='.$row["book_id"].'";> ';
                 echo                 'طلب الآن';
                 echo             '</button>';
                 echo         '</div>';

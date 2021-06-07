@@ -1,15 +1,21 @@
 <?php
 
 session_start();
+
+$book_id = '';
+        if(isset($_GET['book_id'])){
+        $book_id = $_GET['book_id'];
+    }
  
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login_form.php");
+    header("location: login_form.php?book_id=".$book_id."");
     exit;
 }
-
-if(isset($_POST['order'])){
-   insert();
+else{
+    insert();
 }
+
+
 
 function insert(){
     global $link;
@@ -19,25 +25,19 @@ function insert(){
         if(isset($_GET['book_id'])){
         $book_id = $_GET['book_id'];
     }
-
-
-    $customer_phone = mysqli_real_escape_string($link, $_REQUEST['phone']);
-    $username = mysqli_real_escape_string($link, $_REQUEST['username']);
-    $customer_email = mysqli_real_escape_string($link, $_REQUEST['userEmail']);
-    $customer_address = mysqli_real_escape_string($link, $_REQUEST['address']);
-    $date = date('Y-m-d');
-   
     
+    $user_email = $_SESSION["email"];
 
-    $sql = "INSERT INTO orders(id, book_id, customer_name, customer_phone, customer_email, customer_address, order_date) 
-    VALUES (NULL, $book_id, '$username', '$customer_phone', '$customer_email', '$customer_address', '$date')";
+    $sql = "INSERT INTO cart_items(item_id, book_id, user_email) 
+    VALUES (NULL, $book_id, '$user_email')";
+
     if( mysqli_query($link, $sql)){
         echo '<html>';
         echo '<head><link rel="stylesheet" href="style.css"></head>';
         echo '<body>';
         echo "<br><br><br><br><br><br>";
         echo "<center>";
-        echo "<h1>تم طلب الكتاب بنجاح</h1>";
+        echo "<h1>تمت إضافة الكتاب بنجاح</h1>";
         echo "<br><br>";
         echo '<button class="button" id="go_shop_button" onclick=location.href="home.php";>الرجوع للتسوق</button>';
         echo "</center>";
