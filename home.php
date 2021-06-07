@@ -18,7 +18,7 @@
                 <a href="cart.php">السلة</a>
             </li>
             <li class="col-2">
-                <a href="search_user_order.php">الطلبات</a>
+                <a href="orders.php">الطلبات</a>
             </li>
             
         </ul>

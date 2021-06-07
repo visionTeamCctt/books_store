@@ -9,14 +9,12 @@
   <SCRIPT LANGUAGE="JavaScript" src="app.js"></SCRIPT>
   <div class="header row">
 
-    <ul class="nav-list row col-8">
+    <ul class="nav-list row col-11">
       <li class="col-2">
         <a href="home.php">الرئيسية</a>
       </li>
-      <li class="col-2">
-        <a href="search_user_order.php">الطلبات</a>
-      </li>
     </ul>
+    <img src="images/logo.png" alt="logo" class="col-1" style="height: 63px; width: 63px; padding: 12px">
 
   </div>
 

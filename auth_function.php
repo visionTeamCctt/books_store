@@ -30,6 +30,19 @@ function signup()
         $_SESSION["email"] = $email;
         $_SESSION["username"] = $username;
 
+        $user_sql = "SELECT * FROM users ORDER BY user_id DESC LIMIT 1";
+        $has_user = mysqli_query($user_sql, $link);
+
+        if ($has_user) {
+            if (mysqli_num_rows($has_user) > 0) {
+                while ($row = mysqli_fetch_assoc($has_user)) {
+                    $_SESSION['user_id'] = $row['user_id'];
+                }
+            }
+        }
+
+
+
         if (isset($_GET['book_id'])) {
             header("location: cart_insert.php?book_id=" . $_GET['book_id'] . "");
         } else {
@@ -73,6 +86,12 @@ function login()
         $_SESSION["loggedin"] = true;
         $_SESSION["email"] = $email;
         $_SESSION["username"] = $username;
+
+
+        while ($row = mysqli_fetch_assoc($result)) {
+            $_SESSION['user_id'] = $row['user_id'];
+        }
+
 
 
         if (isset($_GET['book_id'])) {

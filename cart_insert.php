@@ -26,10 +26,10 @@ function insert(){
         $book_id = $_GET['book_id'];
     }
     
-    $user_email = $_SESSION["email"];
+    $user_id = $_SESSION["user_id"];
 
-    $sql = "INSERT INTO cart_items(item_id, book_id, user_email) 
-    VALUES (NULL, $book_id, '$user_email')";
+    $sql = "INSERT INTO cart_items(item_id, book_id, user_id) 
+    VALUES (NULL, $book_id, $user_id)";
 
     if( mysqli_query($link, $sql)){
         echo '<html>';
@@ -49,7 +49,3 @@ function insert(){
     
     include 'db_close.php';
 }
-
-?>
-
-

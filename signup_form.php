@@ -8,37 +8,15 @@
 <body>
   <SCRIPT LANGUAGE="JavaScript" src="app.js"></SCRIPT>
   <div class="header row">
-       
-        <ul class="nav-list row col-9">
-            <li class="col-2">
-                <a href="home.php">الرئيسية</a>
-            </li>
-            <li class="col-2">
-                <a href="cart.php">السلة</a>
-            </li>
-            <li class="col-2">
-                <a href="search_user_order.php">الطلبات</a>
-            </li>
-            
-        </ul>
-        <ul class="nav-list row col-3">
-        <li class="col-6">
-            <?php
-            session_start();
 
-            if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
-            {
-                echo '<a href="login_form.php">تسجيل دخول</a>';
-            }
-            else{
-               echo '<a href="logout.php">تسجيل خروج</a>';
-            }
-                ?>
-            </li>
-            <img src="images/logo.png" alt="logo" class="col-4" style="height: 63px; width: 63px; padding: 10px">
-        </ul>
-        
-    </div> 
+    <ul class="nav-list row col-11">
+      <li class="col-2">
+        <a href="home.php">الرئيسية</a>
+      </li>
+    </ul>
+    <img src="images/logo.png" alt="logo" class="col-1" style="height: 63px; width: 63px; padding: 12px">
+
+  </div>
   
 
     <?php
