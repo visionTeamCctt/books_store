@@ -153,14 +153,16 @@ h4 {
     border: none;
     padding: 18px;
     border-radius: 12px;
+    cursor: pointer;
 }
 
 #add_to_order {
     width: 35%;
     height: 35px;
-    padding: 8px;
+    padding: 5px;
     background-color: #3F1605;
     font-family: 'Tajawal', sans-serif;
+    border-radius: 5px;
 }
 
 #cart_items {
@@ -264,3 +266,14 @@ form {
     color: #3F1605;
     font-weight: 600;
 }
+
+#delete_item{
+    font-size: 25px;
+    border: 2px solid #A64B02;
+    color: #A64B02;
+    padding: 5px;
+    
+    
+    border-radius: 5px;
+}
+

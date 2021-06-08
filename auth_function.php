@@ -8,6 +8,10 @@ if (isset($_POST['login'])) {
     login();
 }
 
+if (isset($_POST['update'])) {
+    update();
+}
+
 function signup()
 {
     global $link;
@@ -27,11 +31,14 @@ function signup()
 
 
         $_SESSION["loggedin"] = true;
-        $_SESSION["email"] = $email;
+        $_SESSION["phone"] = $phone;
         $_SESSION["username"] = $username;
+        $_SESSION["email"] = $email;
+        $_SESSION["address"] = $address;
+        $_SESSION["password"] = $password;
 
         $user_sql = "SELECT * FROM users ORDER BY user_id DESC LIMIT 1";
-        $has_user = mysqli_query($user_sql, $link);
+        $has_user = mysqli_query($link, $user_sql);
 
         if ($has_user) {
             if (mysqli_num_rows($has_user) > 0) {
@@ -84,12 +91,16 @@ function login()
 
 
         $_SESSION["loggedin"] = true;
-        $_SESSION["email"] = $email;
-        $_SESSION["username"] = $username;
+        
 
 
         while ($row = mysqli_fetch_assoc($result)) {
             $_SESSION['user_id'] = $row['user_id'];
+            $_SESSION["phone"] = $row['phone'];
+            $_SESSION["username"] =$row['username'];
+            $_SESSION["email"] = $row['email'];
+            $_SESSION["address"] = $row['address'];
+            $_SESSION["password"] = $row['password'];
         }
 
 
@@ -102,6 +113,37 @@ function login()
     } else {
         header("location: login_form.php");
     }
+
+    include 'db_close.php';
+}
+
+function update()
+{
+    global $link;
+    include 'db_connect.php';
+
+    $phone = mysqli_real_escape_string($link, $_REQUEST['phone']);
+    $username = mysqli_real_escape_string($link, $_REQUEST['username']);
+    $email = mysqli_real_escape_string($link, $_REQUEST['email']);
+    $address = mysqli_real_escape_string($link, $_REQUEST['address']);
+    $password = mysqli_real_escape_string($link, $_REQUEST['password']);
+
+    session_start();
+    
+
+    $user_sql = "UPDATE users SET phone = '$phone', username = '$username', email = '$email', address = '$address', password = '$password' WHERE user_id = " . $_SESSION['user_id'] . "";
+    if (mysqli_query($link, $user_sql)) {
+        $_SESSION["phone"] = $phone;
+        $_SESSION["username"] = $username;
+        $_SESSION["email"] = $email;
+        $_SESSION["address"] = $address;
+        $_SESSION["password"] = $password;
+        header("location: home.php");
+    } else {
+        echo "Error" . $sql . "<br>" . mysqli_error($link);
+    }
+
+
 
     include 'db_close.php';
 }

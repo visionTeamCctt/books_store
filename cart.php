@@ -5,45 +5,60 @@
     <link rel="stylesheet" href="style.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 
 <body>
-    <div class="header row">
+<div class="header row">
 
-        <ul class="nav-list row col-9">
-            <li class="col-2">
-                <a href="home.php">الرئيسية</a>
-            </li>
-            <li class="col-2">
-                <a href="cart.php">السلة</a>
-            </li>
-            <li class="col-2">
-                <a href="orders.php">الطلبات</a>
-            </li>
+<ul class="nav-list row col-7">
+    <li class="col-2">
+        <a href="home.php">الرئيسية</a>
+    </li>
+    <li class="col-2">
+        <a href="cart.php">السلة</a>
+    </li>
+    <li class="col-2">
+        <a href="orders.php">الطلبات</a>
+    </li>
 
-        </ul>
-        <ul class="nav-list row col-3">
-            <li class="col-7">
-                <?php
-                session_start();
+</ul>
+<ul class="nav-list row col-5">
 
-                if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-                    echo '<a href="login_form.php">تسجيل دخول</a>';
-                } else {
-                    echo '<a href="logout.php">تسجيل خروج</a>';
-                }
-                ?>
-            </li>
-            <img src="images/logo.png" alt="logo" class="col-5" style="height: 63px; width: 63px; padding: 12px">
-        </ul>
+    <?php
+    session_start();
 
-    </div>
+    if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+        echo '<div class="col-5">';
+        echo '</div>';
+        echo '<li class="col-5">';
+        echo '<a href="login_form.php">تسجيل دخول</a>';
+        echo '</li>';
+        echo '<img src="images/logo.png" alt="logo" class="col-2" style="height: 63px; width: 63px; padding: 12px">';
+        
+    } else {
+        echo '<li class="col-5">';
+        echo '<a href="update_user_form.php">تعديل الحساب</a>';
+        echo '</li>';
+        echo '<li class="col-5">';
+        echo '<a href="logout.php">تسجيل خروج</a>';
+        echo '</li>';
+        echo '<img src="images/logo.png" alt="logo" class="col-2" style="height: 63px; width: 63px; padding: 12px">';
+    }
+    ?>
 
+    
+</ul>
+
+</div>
     <br>
-
+                
     <section class="body_sec">
 
         <br>
+        <i class="trash-alt" style="color: red;"></i>
+        <i class="fas fa-band-aid"></i>
+        
 
         <?php
 
@@ -64,7 +79,7 @@
         if (mysqli_num_rows($result) > 0) {
             $total = 0;
             echo '<label class="title">السلة</label>';
-            echo '<br><br><br>';
+            echo '<hr width = "120px" align = "right"><br><br><br>';
 
             echo '<div class="row">';
             echo            '<div class="col-8">';
@@ -74,6 +89,7 @@
                 echo            '<div class="col-3">';
                 echo                '<img src="images/book' . $row['picture'] . '.jpg" alt="book1" height="160rem">';
                 echo            '</div>';
+
                 echo            '<div class="col-4">';
                 echo                '<h2>';
                 echo                    $row['book_name'];
@@ -81,20 +97,21 @@
                 echo                '<p>';
                 echo                    $row['author'];;
                 echo                '</p>';
-
                 echo            '</div>';
+
                 echo            '<div class="col-3">';
                 echo                '<h2>';
                 echo                    $row['price'] . " د.ل";
                 echo                '</h2>';
                 echo            '</div>';
 
-                echo             '</div>';
                 echo            '<div class="col-2">';
-                echo             '<a';
+                echo            '<br>';
+                echo             '<a href="cart_item_delete?item_id='.$row["item_id"].'"><i class="material-icons" id="delete_item" alt="x">delete</i></a>';
                 echo            '</div>';
 
                 echo             '</div>';
+                
                 echo             '<br>';
                 echo             '<hr width="70%">';
                 echo             '<br>';
@@ -125,7 +142,7 @@
             echo '<center>';
             echo         '<button class="button" id="continue_order" onclick=location.href="place_order.php?total=' . $total . '";>';
             echo             'إجراء الطلب';
-            echo        ' </button>';
+            echo        '</button>';
             echo     '<br>';
             echo '</div>';
             echo '</div>';

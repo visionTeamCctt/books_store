@@ -32,10 +32,10 @@
   <br>
     الاسم: <input type="text" id="username" name="username" value="" class="input_field"><br><br>
     رقم الهاتف: <input type="text" id="phone" name="phone" value="" class="input_field"><br><br>
-    البريد الإلكتروني: <input type="text" id="userEmail" name="email" value="" class="input_field" onblur="validate_email(this.value)"><br><br>
+    البريد الإلكتروني: <input type="text" id="email" name="email" value="" class="input_field" onblur="validate_email(this.value)"><br><br>
     العنوان: <input type="text" id="address" name="address" value="" class="input_field"><br><br>
-    الرقم السري: <input type="text" id="address" name="password" value="" class="input_field"><br><br>
-    تأكيد الرقم السري: <input type="text" id="address" name="confirm_password" value="" class="input_field"><br><br>
+    الرقم السري: <input type="password" id="password" name="password" value="" class="input_field"><br><br>
+    تأكيد الرقم السري: <input type="password" id="confirm_password" name="confirm_password" value="" class="input_field"><br><br>
     <div>
       <br>
 
@@ -43,7 +43,7 @@
       <div class="row">
         <div class="col-6">
           <input type="submit" name="signup" value="تسجيل" class="button" id="order_button"
-           onclick="return validate_fields(); return validate_email(this.value);">
+           onclick="return validate_signup();">
         </div>
         <div class="col-6">
           <input type="reset" class="button" id="order_button" value="مسح البيانات">

@@ -70,7 +70,7 @@ function insert()
                 echo "<center>";
                 echo "<h1>تم الطلب بنجاح</h1>";
                 echo "<br><br>";
-                echo '<button class="button" id="go_shop_button" onclick=location.href="home.php";>الرجوع للتسوق</button>';
+                echo '<button class="button" id="go_shop_button" onclick=location.href="orders.php";>الذهاب للطلبات</button>';
                 echo "</center>";
                 echo '</body>';
                 echo '</html>';

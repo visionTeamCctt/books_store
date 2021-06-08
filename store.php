@@ -49,8 +49,10 @@
         include 'db_connect.php';
 
         $id = '';
-        if(isset($_GET['id'])){
+        $store_name = '';
+        if(isset($_GET['id']) && isset($_GET['store_name'])){
             $id = $_GET['id'];
+            $store_name = $_GET['store_name'];
         }
 
         $sql = "SELECT * FROM store_books WHERE store_id = $id";
@@ -58,18 +60,19 @@
 
 
         if (mysqli_num_rows($result) > 0) {
-            // echo  "<center><h2>";
-            // echo  "مكتبة ".mysqli_fetch_assoc($result)['name'];
-            // echo "</h2></center><hr style='width: 20%;'><br>";
-            // echo '<h1>hello</h1>';
+            echo  "<center><h2>";
+            echo  "مكتبة ".$store_name;
+            echo "</h2><hr style='width: 20%;'></center><br>";
+            
 
             while ($row = mysqli_fetch_assoc($result)) {
                 echo '<div class="row">';
                 echo '<div class="col-6">';
                 echo '<div class="row">';
                 echo     '<div class="col-4">';
-
+                echo "<a href='" . $row['link'] . "' target='_blank'>";
                 echo "<img src='images/book".$row['picture'].".jpg' alt='book' height='200px'>";
+                echo "</a>";
                 echo     '</div>';
                 echo     '<div class="col-8">';
                 echo        ' <h2>';
@@ -83,7 +86,7 @@
                 echo         '</h3>';
                 echo         '<div>';
                 echo             '<button type="button" class="button" id="add_to_order" onclick=location.href="cart_insert.php?book_id='.$row["book_id"].'";> ';
-                echo                 'طلب الآن';
+                echo                 'إضافة إلى السلة';
                 echo             '</button>';
                 echo         '</div>';
                 echo     '</div>';

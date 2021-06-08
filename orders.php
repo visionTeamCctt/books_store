@@ -8,36 +8,48 @@
 </head>
 
 <body>
-    <div class="header row">
+<div class="header row">
 
-        <ul class="nav-list row col-9">
-            <li class="col-2">
-                <a href="home.php">الرئيسية</a>
-            </li>
-            <li class="col-2">
-                <a href="cart.php">السلة</a>
-            </li>
-            <li class="col-2">
-                <a href="orders.php">الطلبات</a>
-            </li>
+<ul class="nav-list row col-7">
+    <li class="col-2">
+        <a href="home.php">الرئيسية</a>
+    </li>
+    <li class="col-2">
+        <a href="cart.php">السلة</a>
+    </li>
+    <li class="col-2">
+        <a href="orders.php">الطلبات</a>
+    </li>
 
-        </ul>
-        <ul class="nav-list row col-3">
-            <li class="col-7">
-                <?php
-                session_start();
+</ul>
+<ul class="nav-list row col-5">
 
-                if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-                    echo '<a href="login_form.php">تسجيل دخول</a>';
-                } else {
-                    echo '<a href="logout.php">تسجيل خروج</a>';
-                }
-                ?>
-            </li>
-            <img src="images/logo.png" alt="logo" class="col-5" style="height: 63px; width: 63px; padding: 12px">
-        </ul>
+    <?php
+    session_start();
 
-    </div>
+    if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+        echo '<div class="col-5">';
+        echo '</div>';
+        echo '<li class="col-5">';
+        echo '<a href="login_form.php">تسجيل دخول</a>';
+        echo '</li>';
+        echo '<img src="images/logo.png" alt="logo" class="col-2" style="height: 63px; width: 63px; padding: 12px">';
+        
+    } else {
+        echo '<li class="col-5">';
+        echo '<a href="update_user_form.php">تعديل الحساب</a>';
+        echo '</li>';
+        echo '<li class="col-5">';
+        echo '<a href="logout.php">تسجيل خروج</a>';
+        echo '</li>';
+        echo '<img src="images/logo.png" alt="logo" class="col-2" style="height: 63px; width: 63px; padding: 12px">';
+    }
+    ?>
+
+    
+</ul>
+
+</div>
     <br>
     <section class="body_sec">
         <br>
@@ -45,10 +57,10 @@
 
         <?php
 
-if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-    header("location: login_form.php");
-    exit;
-}
+        if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+            header("location: login_form.php");
+            exit;
+        }
 
         global $link;
         include 'db_connect.php';
@@ -63,7 +75,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         if (mysqli_num_rows($result) > 0) {
             $total = 0;
             echo '<label class="title">تاريخ الطلبات</label>';
-            echo '<br><br><br>';
+            echo '<hr width = "240px" align = "right"><br><br><br>';
 
             echo '<div class="row">';
             echo            '<div class="col-12">';
@@ -82,7 +94,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 echo                '</p>';
                 echo                '<br>';
                 echo                '<p>';
-                echo                    'تاريخ الطلب: '.$row['order_date'].'';
+                echo                    'تاريخ الطلب: ' . $row['order_date'] . '';
                 echo                '</p>';
 
                 echo            '</div>';
@@ -93,7 +105,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 echo            '</div>';
 
                 echo             '</div>';
-                
+
                 echo            '</div>';
 
                 echo             '</div>';

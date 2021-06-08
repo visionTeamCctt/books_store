@@ -30,13 +30,13 @@
   ?>
   <h2>تسجيل دخول</h2>
   <br>
-  البريد الإلكتروني: <input type="text" id="userEmail" name="email" value="" class="input_field" onblur="validate_email(this.value)"><br><br>
-  الرقم السري: <input type="text" id="password" name="password" value="" class="input_field"><br><br>
+  البريد الإلكتروني: <input type="text" id="email" name="email" value="" class="input_field" onblur="validate_email(this.value)"><br><br>
+  الرقم السري: <input type="password" id="password" name="password" value="" class="input_field"><br><br>
   <div>
     <br>
     <div class="row">
       <div class="col-6">
-        <input type="submit" name="login" value="تسجيل" class="button" id="order_button" onclick="return validate_email(document.login.email.value);">
+        <input type="submit" name="login" value="تسجيل" class="button" id="order_button" onclick="return validate_login();">
       </div>
       <div class="col-6">
         <input type="reset" class="button" id="order_button" value="مسح البيانات">
