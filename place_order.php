@@ -33,7 +33,7 @@ function insert()
         // getting the last order id 
         $order_sql = "SELECT * FROM orders ORDER BY order_id DESC LIMIT 1";
         $orders = mysqli_query($link, $order_sql);
-        $order_id = 1;
+        $order_id = '';
         if (mysqli_num_rows($orders) > 0) {
             while ($row = mysqli_fetch_assoc($orders)) {
                 $order_id = $row['order_id'];
@@ -61,7 +61,7 @@ function insert()
             }
 
             // trucate cart items
-            $truncate_cart_sql = "TRUNCATE TABLE cart_items";
+            $truncate_cart_sql = "DELETE FROM cart_items where cart_items.user_id = $user_id";
             if (mysqli_query($link, $truncate_cart_sql)) {
                 echo '<html>';
                 echo '<head><link rel="stylesheet" href="style.css"></head>';

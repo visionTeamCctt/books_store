@@ -86,7 +86,7 @@
                     echo "<a href='store.php?id=" . $row['id'] . "&store_name=" . $row['name'] . "' class='see_all_link'>عرض الكل</a>";
                     echo "</div>";
                     echo "</div>";
-                    $sql2 = "SELECT * FROM store_books WHERE store_books.store_id = " . $row['id'] . " LIMIT 5";
+                    $sql2 = "SELECT * FROM store_books WHERE store_books.store_id = " . $row['id'] . " AND featured = 1 LIMIT 5";
                     $result2 = mysqli_query($link, $sql2);
 
                     if (mysqli_num_rows($result2) > 0) {
